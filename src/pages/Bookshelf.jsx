@@ -11,6 +11,7 @@ const Bookshelf = () => {
   const [error, setError] = useState(null);
 
   const getToken = () => localStorage.getItem("jwtToken");
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleError = (error, defaultMessage) => {
     if (error.response?.status === 401) {
@@ -29,8 +30,10 @@ const Bookshelf = () => {
       return;
     }
 
+    
+
     axios
-      .get("/api/my-bookshelf", {
+      .get(`${apiUrl}/api/my-bookshelf`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -52,7 +55,7 @@ const Bookshelf = () => {
     }
 
     axios
-      .delete(`/api/my-bookshelf/${bookId}`, {
+      .delete(`${apiUrl}/api/my-bookshelf/${bookId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {

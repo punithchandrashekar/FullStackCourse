@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const fetchBooks = (query = "") => {
     setLoading(true); // Show loading while fetching
-    const apiUrl = process.env.REACT_APP_API_URL; // Get API URL from environment variable
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     axios
       .get(`${apiUrl}/api/books?q=${query}`)
