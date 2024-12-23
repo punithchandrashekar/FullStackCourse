@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/NavBar";
@@ -17,8 +16,10 @@ const Dashboard = () => {
 
   const fetchBooks = (query = "") => {
     setLoading(true); // Show loading while fetching
+    const apiUrl = process.env.REACT_APP_API_URL; // Get API URL from environment variable
+
     axios
-      .get(`/api/books?q=${query}`)
+      .get(`${apiUrl}/api/books?q=${query}`)
       .then((response) => {
         setBooks(response.data);
         setLoading(false); // Hide loading after fetching
@@ -42,10 +43,12 @@ const Dashboard = () => {
       return;
     }
 
+    const apiUrl = process.env.REACT_APP_API_URL; // Get API URL from environment variable
+
     // Send POST request to add the book to the bookshelf
     axios
       .post(
-        "/api/my-bookshelf",
+        `${apiUrl}/api/my-bookshelf`,
         {
           id: book.id,
           title: book.title,

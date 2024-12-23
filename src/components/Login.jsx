@@ -13,8 +13,11 @@ const Login = () => {
     e.preventDefault();
     setError(''); // Clear any previous errors
 
+    // Use the environment variable for the API URL
+    const apiUrl = process.env.REACT_APP_API_URL;
+
     axios
-      .post('/api/login', { email, password })
+      .post(`${apiUrl}/api/login`, { email, password })
       .then((response) => {
         // Assuming the response contains a JWT token
         const { token } = response.data;
