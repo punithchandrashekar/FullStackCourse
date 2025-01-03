@@ -20,7 +20,7 @@ const SignUp = () => {
     axios
       .post(`${apiUrl}/api/signup`, { email, password })
       .then((response) => {
-        setSuccess('Signup successful! Redirecting...');
+        setSuccess('Signup successful! Please login to continue...');
         
         // Assuming the response contains a JWT token
         const { token } = response.data;
@@ -29,7 +29,7 @@ const SignUp = () => {
         localStorage.setItem('jwtToken', token);
 
         // Redirect to dashboard
-        setTimeout(() => navigate('/dashboard'), 2000);
+        setTimeout(() => navigate('/'), 2000);
       })
       .catch((error) => {
         if (error.response) {
